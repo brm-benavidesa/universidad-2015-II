@@ -39,6 +39,4 @@ public class Datos {
     this.nombre = nombre;
   }
   
-  
-  
 }
