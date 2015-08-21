@@ -44,8 +44,8 @@ public class server extends HttpServlet {
       out.println("<script src='js/funciones.js'></script>"); 
       out.println("</head>");
       out.println("<body id='cuerpo'>");
-      out.println("<h1>Servlet server at " + request.getContextPath() + "</h1>");
-      out.println("<script>fechas('"+persona.getFecha()+"');$(\"#cuerpo\").css(\"background-color\",\"#0000FF\");</script>");
+      out.println("<h1>Hola  " + persona.getNombre() + " Tienes <span id='anios'></span> años</h1>");
+      out.println("<script>fechas('"+persona.getFecha()+"');</script>");
       out.println("</body>");
       out.println("</html>");
     } finally {
@@ -80,8 +80,10 @@ public class server extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     String fecha = request.getParameter("fNacimiento");
+    String nombre = request.getParameter("nombre");
     //String fecha = "perro";
     persona.setFecha(fecha);
+    persona.setNombre(nombre);
           
     processRequest(request, response);
   }

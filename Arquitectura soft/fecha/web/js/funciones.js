@@ -1,4 +1,5 @@
 var fechas = function(edad){
+ 
   var hoy = new Date();
   var mes = ((hoy.getMonth()+1)<= 9) ? "0" + (hoy.getMonth()+1) : (hoy.getMonth()+1);
   var f2 =  (hoy.getFullYear()+"-"+mes+"-"+hoy.getUTCDate());
@@ -19,7 +20,17 @@ var fechas = function(edad){
   }else{
     $("#cuerpo").css("background-color","#0000FF");
   }
-  //return anios;
+  $("#anios").text(edadP);
 };
+$(document).ready(function(){
+  
+  $("#fNacimiento").datepicker({
+    format: 'yyyy-mm-dd',
+    orientation:"auto top",
+    autoclose:true,
+    language:'es'
+  });
+  
+});
 
 

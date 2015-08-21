@@ -24,7 +24,7 @@ public class SimulacionI {
   private String ecuacion;
   private int totalRnd;
   private double maxY;
-
+  private boolean negativo = false;
   
 
   public SimulacionI(double limMin, double limMax, String ecuacion) {
@@ -49,7 +49,7 @@ public class SimulacionI {
     double multiplicando;
     double multiplicador;
     double producto;
-    boolean negativo = false;
+    
     String regEx = "[\\+]|[\\-]";
     if (ecuacion.charAt(0) == '-') {
       ecuacion = ecuacion.substring(1, ecuacion.length());
@@ -117,13 +117,20 @@ public class SimulacionI {
   public boolean negativa(){
     return limMax<0 && limMin<0;
   }
+  public boolean elMinEsMax(){
+    if(!negativo){
+      return this.evaluaEcua(this.ecuacion, limMin)>this.evaluaEcua(this.ecuacion, limMax);
+    }else{
+      return false;
+    }
+  }
   /*
    GENERAR NUMEROS ALEATORIOS PARA Y
    */
 
   public ArrayList generaRndY() {
     double randomNum;
-    if(negativa()){
+    if(negativa() || elMinEsMax()){
        maxY = this.evaluaEcua(this.ecuacion, limMin);
     }else{
        maxY = this.evaluaEcua(this.ecuacion, limMax);
@@ -155,7 +162,7 @@ public class SimulacionI {
   }
   public double calculaArea(){
     double aRec;
-    if(negativa()){
+    if(negativa() || elMinEsMax()){
      aRec = this.evaluaEcua(this.ecuacion, limMin)*(limMax-limMin);
     }else{
      aRec = this.evaluaEcua(this.ecuacion, limMax)*(limMax-limMin);
